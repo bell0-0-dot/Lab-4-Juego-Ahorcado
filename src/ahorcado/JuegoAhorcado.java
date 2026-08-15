@@ -2,7 +2,7 @@ package ahorcado;
 
 
 public interface JuegoAhorcado {
-    void inicializarPalabraSecreta();
-    void jugar();
+    void inicializarPalabraSecreta(String palabra);
+    void jugar(char letra);
     
 }

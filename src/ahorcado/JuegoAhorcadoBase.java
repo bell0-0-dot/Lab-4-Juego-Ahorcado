@@ -8,14 +8,14 @@ public abstract class JuegoAhorcadoBase implements JuegoAhorcado{
     protected String palabraSecreta;
     protected String palabraIngresada;
     protected int intentos;
-    protected List<Character> []letrasIngresadas;
+    protected List<Character> letrasIngresadas;
     protected boolean[]intentosAcertados;
     
     public JuegoAhorcadoBase(){
         this.intentos=6;
     }
     
-    protected abstract void actualizarPalabraIngresada();
+    protected abstract void actualizarPalabraIngresada(char letra);
     protected abstract boolean verificarLetra(char letra);
     protected abstract boolean esGanador();
 
@@ -43,13 +43,15 @@ public abstract class JuegoAhorcadoBase implements JuegoAhorcado{
         this.intentos = intentos;
     }
 
-    public String[] getLetrasIngresadas() {
+    public List<Character> getLetrasIngresadas() {
         return letrasIngresadas;
     }
 
-    public void setLetrasIngresadas(String[] letrasIngresadas) {
+    public void setLetrasIngresadas(List<Character>letrasIngresadas) {
         this.letrasIngresadas = letrasIngresadas;
     }
+
+   
 
     public boolean[] getIntentosAcertados() {
         return intentosAcertados;
