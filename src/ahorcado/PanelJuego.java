@@ -46,7 +46,6 @@ public class PanelJuego extends PanelAbstracto {
     
     @Override
     public void inicializar() {
-        // Cargar imágenes antes de construir la interfaz gráfica
         cargarImagenes();
 
         panelSuperior = prepararPanelSuperior();
