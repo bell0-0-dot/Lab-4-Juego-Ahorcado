@@ -3,65 +3,68 @@ package ahorcado;
 import java.util.ArrayList;
 
 public class JuegoAhorcadoAzar extends JuegoAhorcadoBase {
+
     private AdministradorPalabras adminPalabras;
 
     public JuegoAhorcadoAzar(AdministradorPalabras adminPalabras) {
         super();
         this.adminPalabras = adminPalabras;
-        this.letrasIngresadas = new ArrayList<>();
+        this.letrasIngresadas = new ArrayList<Character>();
     }
 
     public void inicializarPalabraSecretayOculta() {
-        inicializarPalabraSecreta(adminPalabras.obtenerPalabraAzar());
+        if (adminPalabras != null) {
+            String palabraSeleccionada = adminPalabras.obtenerPalabraAzar();
+            inicializarPalabraSecreta(palabraSeleccionada);
+        } else {
+            inicializarPalabraSecreta("JAVA");
+        }
     }
 
     @Override
     public void inicializarPalabraSecreta(String palabra) {
-        this.palabraSecreta = palabra.toUpperCase();
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < palabraSecreta.length(); i++) {
-            sb.append("_");
+        if (palabra == null || palabra.trim().isEmpty()) {
+            this.palabraSecreta = "JAVA";
+        } else {
+            this.palabraSecreta = palabra.trim().toUpperCase();
         }
-        this.palabraIngresada = sb.toString();
-        this.intentosAcertados = new boolean[palabraSecreta.length()];
-        this.letrasIngresadas.clear();
+
+        StringBuilder guion = new StringBuilder();
+        for (int i = 0; i < palabraSecreta.length(); i++) {
+            guion.append("_");
+        }
+        this.palabraIngresada = guion.toString();
+        
+        if (this.letrasIngresadas != null) {
+            this.letrasIngresadas.clear();
+        }
         this.intentos = 6;
     }
 
     @Override
-    protected void actualizarPalabraIngresada(char letra) {
-        char[] caracteres = palabraIngresada.toCharArray();
+    public void actualizarPalabraIngresada(char letra) {
+        char[] ingresadas = palabraIngresada.toCharArray();
         for (int i = 0; i < palabraSecreta.length(); i++) {
             if (palabraSecreta.charAt(i) == letra) {
-                caracteres[i] = letra;
-                intentosAcertados[i] = true;
+                ingresadas[i] = letra;
             }
         }
-        this.palabraIngresada = String.valueOf(caracteres);
+        this.palabraIngresada = new String(ingresadas);
     }
 
     @Override
-    protected boolean verificarLetra(char letra) {
-        return palabraSecreta.indexOf(letra) >= 0;
+    public boolean verificarLetra(char letra) {
+        for (int i = 0; i < palabraSecreta.length(); i++) {
+            if (palabraSecreta.charAt(i) == letra) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
     public boolean esGanador() {
-        if (palabraIngresada == null) {
-            return false;
-        }
-        return palabraIngresada.equals(palabraSecreta);
-    }
-
-    public boolean esPerdedor() {
-        return intentos <= 0 && !esGanador();
-    }
-
-    public void jugar(String input) throws LetraInvalidaException, LetraRepetidaException {
-        if (input == null || input.trim().isEmpty()) {
-            throw new LetraInvalidaException("Debes ingresar una letra.");
-        }
-        jugar(input.trim().charAt(0));
+        return palabraIngresada.equalsIgnoreCase(palabraSecreta);
     }
 
     @Override
@@ -69,16 +72,14 @@ public class JuegoAhorcadoAzar extends JuegoAhorcadoBase {
         letra = Character.toUpperCase(letra);
 
         if (!Character.isLetter(letra)) {
-            throw new LetraInvalidaException("El caracter ingresado no es una letra valida.");
+            throw new LetraInvalidaException(letra);
         }
 
-        String letraStr = String.valueOf(letra);
-
-        if (letrasIngresadas.contains(letraStr)) {
+        if (letrasIngresadas.contains(Character.valueOf(letra))) {
             throw new LetraRepetidaException(letra);
         }
 
-        letrasIngresadas.add(letraStr);
+        letrasIngresadas.add(Character.valueOf(letra));
 
         if (verificarLetra(letra)) {
             actualizarPalabraIngresada(letra);

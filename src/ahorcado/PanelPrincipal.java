@@ -1,7 +1,5 @@
 package ahorcado;
 
-import ahorcado.PanelJuego;
-import ahorcado.PanelAbstracto;
 import javax.swing.*;
 import java.awt.*;
 
@@ -33,9 +31,32 @@ public class PanelPrincipal extends PanelAbstracto {
         p.setLayout(new GridLayout(3, 1, 0, 12));
         p.setOpaque(false);
         p.setAlignmentX(CENTER_ALIGNMENT);
-        p.add(agregarBoton("Jugar Modo Palabra Fija", () -> adminPaneles.mostrarPanel(new PanelJuego(PanelJuego.PALABRA_FIJA))));
-        p.add(agregarBoton("Jugar Modo Palabra Aleatoria", () -> adminPaneles.mostrarPanel(new PanelJuego(PanelJuego.PALABRA_ALEATORIA))));
-        p.add(agregarBoton("Salir", () -> System.exit(0)));
+
+        JButton btnFijo = agregarBoton("Jugar Modo Palabra Fija", new Runnable() {
+            @Override
+            public void run() {
+                adminPaneles.mostrarPanel(new PanelJuego(PanelJuego.PALABRA_FIJA));
+            }
+        });
+
+        JButton btnAleatorio = agregarBoton("Jugar Modo Palabra Aleatoria", new Runnable() {
+            @Override
+            public void run() {
+                adminPaneles.mostrarPanel(new PanelJuego(PanelJuego.PALABRA_ALEATORIA));
+            }
+        });
+
+        JButton btnSalir = agregarBoton("Salir", new Runnable() {
+            @Override
+            public void run() {
+                System.exit(0);
+            }
+        });
+
+        p.add(btnFijo);
+        p.add(btnAleatorio);
+        p.add(btnSalir);
+
         return p;
     }
 }
