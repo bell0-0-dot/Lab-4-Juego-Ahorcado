@@ -15,6 +15,8 @@ public class PanelJuego extends PanelAbstracto {
     private JPanel panelPalabra;
     private JPanel panelTeclado;
 
+    private JLabel palabraSecreta;
+
     private String[] letras = new String[]{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J",
             "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
 
@@ -41,6 +43,10 @@ public class PanelJuego extends PanelAbstracto {
         return contenedor;
     }
 
+    private void actualizarPalabraSecreta(String palabra){
+        palabraSecreta = agregarTitulo(palabra);
+    }
+
     private JPanel prepararPanelSuperior() {
         JPanel p = new JPanel();
         p.setBackground(new Color(19, 89, 87));
@@ -61,14 +67,15 @@ public class PanelJuego extends PanelAbstracto {
         JPanel p = new JPanel();
         p.setOpaque(false);
         return p;
-
     }
 
     private JPanel prepararPanelPalabra() {
         JPanel p = new JPanel();
+        p.setLayout(new GridBagLayout());
         p.setOpaque(false);
+        palabraSecreta = agregarTitulo("_________");
+        p.add(palabraSecreta);
         return p;
-
     }
 
     private JPanel prepararPanelTeclado() {
