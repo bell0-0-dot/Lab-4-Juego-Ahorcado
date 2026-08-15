@@ -1,2 +1,15 @@
+# Archivos compilados
+*.class
+
+# NetBeans
+/build/
+/nbbuild/
+/dist/
+/.nb-gradle/
+
 # IntelliJ IDEA
 .idea/
+*.iml
+
+# Compilación de IntelliJ
+/out/
