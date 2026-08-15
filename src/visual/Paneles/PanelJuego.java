@@ -72,16 +72,26 @@ public class PanelJuego extends PanelAbstracto {
     }
 
     private JPanel prepararPanelTeclado() {
+        JPanel contenedor = new JPanel();
+        contenedor.setLayout(new BoxLayout(contenedor, BoxLayout.Y_AXIS));
+
+        contenedor.setOpaque(true);
+        contenedor.setBackground(new Color(19, 89, 87));
+        contenedor.add(agregarLabel("Seleccione una letra: "));
+        contenedor.add(Box.createVerticalStrut(10));
+
         JPanel p = new JPanel();
-        p.setLayout(new GridLayout(5, 6, 40, 10));
+        p.setLayout(new GridLayout(5, 6, 10, 10));
         p.setOpaque(false);
+        p.setBackground(new Color(19, 89, 87));
 
         for (String letra : letras) {
             JButton b = agregarBoton(letra);
             p.add(b);
         }
 
-        return p;
+        contenedor.add(p);
+        return contenedor;
     }
 
     private JPanel prepararPanelPrincipal(){
