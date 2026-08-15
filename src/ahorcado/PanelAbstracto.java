@@ -1,4 +1,4 @@
-package visual.Paneles;
+package ahorcado;
 
 import visual.AdministradorPaneles;
 

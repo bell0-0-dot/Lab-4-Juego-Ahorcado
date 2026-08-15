@@ -1,7 +1,7 @@
-package visual;
+package ahorcado;
 
-import visual.Paneles.PanelAbstracto;
-import visual.Paneles.PanelPrincipal;
+import ahorcado.PanelAbstracto;
+import ahorcado.PanelPrincipal;
 
 import javax.swing.*;
 import java.awt.*;

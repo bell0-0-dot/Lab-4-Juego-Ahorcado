@@ -8,6 +8,13 @@ package ahorcado;
  *
  * @author vasqu
  */
-public class LetraInvalidaException {
+public class LetraInvalidaException extends Exception{
+
+    public LetraInvalidaException(char letra) {
+         super("Error. La letra ingresa no pueder ser un simbolo o numero");
+    }
+    
+    
+   
     
 }

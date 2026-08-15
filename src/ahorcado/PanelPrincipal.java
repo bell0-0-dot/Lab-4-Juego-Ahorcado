@@ -1,5 +1,7 @@
-package visual.Paneles;
+package ahorcado;
 
+import ahorcado.PanelJuego;
+import ahorcado.PanelAbstracto;
 import javax.swing.*;
 import java.awt.*;
 
