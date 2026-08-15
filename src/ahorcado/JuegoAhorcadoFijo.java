@@ -1,79 +1,75 @@
-
 package ahorcado;
 
 import java.util.ArrayList;
-import java.util.List;
-public class JuegoAhorcadoFijo extends JuegoAhorcadoBase{
-    
+
+public class JuegoAhorcadoFijo extends JuegoAhorcadoBase {
 
     public JuegoAhorcadoFijo(String palabra) {
+        super();
+        this.letrasIngresadas = new ArrayList<>();
         inicializarPalabraSecreta(palabra);
-        letrasIngresadas=new ArrayList<>();
-        String guion="";
+        
+        StringBuilder guion = new StringBuilder();
         for (int i = 0; i < palabraSecreta.length(); i++) {
-            guion=guion+"_";
+            guion.append("_");
         }
-        this.palabraIngresada=guion;
+        this.palabraIngresada = guion.toString();
     }
-    
-    
-    
+
+    @Override   
+    public void inicializarPalabraSecreta(String palabra) {
+        if (palabra == null || palabra.trim().isEmpty()) {
+            this.palabraSecreta = "JAVA";
+        } else {
+            this.palabraSecreta = palabra.trim().toUpperCase();
+        }
+    }
 
     @Override
-    protected void actualizarPalabraIngresada(char letra) {
-        char[]ingresadas=palabraIngresada.toCharArray();
+    public void actualizarPalabraIngresada(char letra) {
+        char[] ingresadas = palabraIngresada.toCharArray();
         for (int i = 0; i < palabraSecreta.length(); i++) {
-            if(palabraSecreta.charAt(i)==letra){
-                ingresadas[i]=letra;
+            if (palabraSecreta.charAt(i) == letra) {
+                ingresadas[i] = letra;
             }
         }
-        palabraIngresada=new String (ingresadas);
-        
+        this.palabraIngresada = new String(ingresadas);
     }
 
     @Override
-    protected boolean verificarLetra(char letra) {
+    public boolean verificarLetra(char letra) {
         for (int i = 0; i < palabraSecreta.length(); i++) {
-            char letraSecreta=palabraSecreta.charAt(i);
-            if(letraSecreta==letra){
+            char letraSecreta = palabraSecreta.charAt(i);
+            if (letraSecreta == letra) {
                 return true;
-                
             }
         }
         return false;
-        
     }
 
     @Override
-    protected boolean esGanador() {
+    public boolean esGanador() {
         return palabraIngresada.equalsIgnoreCase(palabraSecreta);
-      
     }
 
     @Override
-    public void inicializarPalabraSecreta(String palabra) {
-        this.palabraSecreta=palabra.toLowerCase();
-    }
+    public void jugar(char letra) throws LetraInvalidaException, LetraRepetidaException {
+        letra = Character.toUpperCase(letra);
 
-    @Override
-    public void jugar(char letra) throws LetraInvalidaException, LetraRepetidaException{
-        if(!Character.isLetter(letra)){
+        if (!Character.isLetter(letra)) {
             throw new LetraInvalidaException(letra);
-            
         }
-        
-        if(letrasIngresadas.contains(letra)){
+
+        if (letrasIngresadas.contains(letra)) {
             throw new LetraRepetidaException(letra);
         }
+
         letrasIngresadas.add(letra);
-        if(verificarLetra(letra)){
-             actualizarPalabraIngresada(letra);
-        }else{
+
+        if (verificarLetra(letra)) {
+            actualizarPalabraIngresada(letra);
+        } else {
             intentos--;
         }
-        
-       
     }
-
-    
 }
