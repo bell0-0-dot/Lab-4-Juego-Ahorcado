@@ -199,11 +199,9 @@ public class PanelJuego extends PanelAbstracto {
     }
 
     private void actualizarPantalla() {
-        // Formatear palabra secreta con espacios entre letras ("_ _ _ _")
         String formatoVisual = juego.getPalabraIngresada().replace("", " ").trim();
         labelPalabraOculta.setText(formatoVisual);
 
-        // Calcular errores (6 intentos iniciales)
         int errores = 6 - juego.getIntentos();
         if (imagenesAhorcado != null && errores >= 0 && errores < imagenesAhorcado.length) {
             if (imagenesAhorcado[errores] != null) {

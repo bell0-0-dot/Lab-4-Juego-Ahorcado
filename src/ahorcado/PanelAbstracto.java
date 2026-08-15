@@ -1,6 +1,6 @@
 package ahorcado;
 
-import visual.AdministradorPaneles;
+
 
 import javax.swing.*;
 import java.awt.*;
