@@ -1,6 +1,8 @@
 package ahorcado;
 
 
-public class JuegoAhorcado {
+public interface JuegoAhorcado {
+    void inicializarPalabraSecreta();
+    void jugar();
     
 }
