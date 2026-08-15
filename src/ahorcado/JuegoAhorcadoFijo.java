@@ -58,6 +58,7 @@ public class JuegoAhorcadoFijo extends JuegoAhorcadoBase{
     @Override
     public void jugar(char letra) {
         
+        
        
     }
 
