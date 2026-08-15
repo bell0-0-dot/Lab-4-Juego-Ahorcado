@@ -56,8 +56,21 @@ public class JuegoAhorcadoFijo extends JuegoAhorcadoBase{
     }
 
     @Override
-    public void jugar(char letra) {
+    public void jugar(char letra) throws LetraInvalidaException, LetraRepetidaException{
+        if(!Character.isLetter(letra)){
+            throw new LetraInvalidaException(letra);
+            
+        }
         
+        if(letrasIngresadas.contains(letra)){
+            throw new LetraRepetidaException(letra);
+        }
+        letrasIngresadas.add(letra);
+        if(verificarLetra(letra)){
+             actualizarPalabraIngresada(letra);
+        }else{
+            intentos--;
+        }
         
        
     }
