@@ -1,5 +1,8 @@
 package visual;
 
+import visual.Paneles.PanelAbstracto;
+import visual.Paneles.PanelPrincipal;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -18,9 +21,12 @@ public class AdministradorPaneles {
     public void mostrar(){
         ventana.add(contenedorPrincipal);
         ventana.setVisible(true);
+        ventana.setLocationRelativeTo(null);
+        mostrarPanel(new PanelPrincipal());
     }
 
-    public void mostrarPanel(JPanel panel){
+    public void mostrarPanel(PanelAbstracto panel){
+        panel.inicializar();
         contenedorPrincipal.removeAll();
         contenedorPrincipal.add(panel);
         contenedorPrincipal.revalidate();
