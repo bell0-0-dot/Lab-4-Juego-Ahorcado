@@ -3,7 +3,7 @@ package ahorcado;
 import ahorcado.PanelAbstracto;
 import javax.swing.*;
 import java.awt.*;
-import visual.Paneles.PanelPrincipal;
+
 
 public class PanelJuego extends PanelAbstracto {
 
