@@ -23,7 +23,7 @@ public abstract class PanelAbstracto extends JPanel {
         add(contenedorPrincipal, BorderLayout.CENTER);
     }
 
-    private JPanel obtenerContenedorPrincipal() {
+    protected JPanel obtenerContenedorPrincipal() {
         JPanel contenedor = new JPanel();
         contenedor.setLayout(new GridBagLayout());
         contenedor.setBackground(new Color(41, 165, 162));
@@ -70,7 +70,7 @@ public abstract class PanelAbstracto extends JPanel {
             @Override
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 b.setForeground(Color.WHITE);
-                b.setBackground(Color.BLACK);
+                b.setBackground(new Color(16, 89, 89));
                 b.setBorderPainted(true);
                 b.setBorder(BorderFactory.createLineBorder(Color.WHITE));
             }
